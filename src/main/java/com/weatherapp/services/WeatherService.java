@@ -33,6 +33,12 @@ public class WeatherService {
 	public static final String SUCCESS = "success";
 	public static final String ZIPCODE_ERROR = "zipcode_error";
 	public static final String NETWORK_ERROR = "network_error";
+	public static final String CURRENT_OBSERVATION = "current_observation";
+	public static final String OBSERVATION_LOCATION = "observation_location";
+	public static final String CITY = "city";
+	public static final String STATE = "state";
+	public static final String TEMP = "temp_f";
+	public static final String URL_FOR_WEATHER = "http://api.wunderground.com/api/";
 	
 	private  @Value("#{settings['restcall.APIKEY']}") String apikey;
 	
@@ -46,16 +52,16 @@ public class WeatherService {
 		vars.put("zipcode", location.getZipcode()+".json");
 		try{
 		String jsonObject = restTemplate.getForObject(
-		  "http://api.wunderground.com/api/"+apikey+"/conditions/q/{zipcode}", 
+		  URL_FOR_WEATHER+apikey+"/conditions/q/{zipcode}", 
 		  String.class, vars);
 		JsonParser jsonParser = new JsonParser();
 		JsonObject compositeJsonObj = ((JsonObject) jsonParser.parse(jsonObject));
-		JsonObject currObservation = compositeJsonObj.get("current_observation").getAsJsonObject();
-		JsonObject observationLocation = currObservation.get("observation_location").getAsJsonObject();
+		JsonObject currObservation = compositeJsonObj.get(CURRENT_OBSERVATION).getAsJsonObject();
+		JsonObject observationLocation = currObservation.get(OBSERVATION_LOCATION).getAsJsonObject();
 		
-		location.setName(observationLocation.get("city").getAsString());
-		location.setState(observationLocation.get("state").getAsString());
-		location.setTemperature(currObservation.get("temp_f").getAsString() + " F");
+		location.setName(observationLocation.get(CITY).getAsString());
+		location.setState(observationLocation.get(STATE).getAsString());
+		location.setTemperature(currObservation.get(TEMP).getAsString() + " F");
 		}catch(NullPointerException ne){
 			
 			return ZIPCODE_ERROR;
