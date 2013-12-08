@@ -8,6 +8,11 @@ import com.weatherapp.pojo.Location;
 import com.weatherapp.services.WeatherService;
 import com.weatherapp.validator.LocationValidator;
 
+/**
+ * Provides configuration objects for the entire app
+ * @author Sapan.Saxena
+ *
+ */
 @Configuration
 public class WeatherConfig {
 	    @Bean

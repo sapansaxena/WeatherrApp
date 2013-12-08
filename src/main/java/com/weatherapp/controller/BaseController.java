@@ -70,11 +70,15 @@ public class BaseController {
 		modelView.getModelMap().put("location", location);
 		return modelView;
 
-		// Spring uses InternalResourceViewResolver and return back index.jsp
-		//return new ModelAndView("index", "command", location);
-
 	}
 
+	/**
+	 * Get Weather details of a particular zipcode
+	 * @param location Location object
+	 * @param bindingResult Erros object
+	 * @param model ModelMap object
+	 * @return ModelAndView object
+	 */
 	@RequestMapping(value = "/getWeather", method = RequestMethod.POST)
 	public ModelAndView getWeather(@ModelAttribute("location") Location location ,BindingResult bindingResult, ModelMap model) {
 		beanValidator.validate(location, bindingResult);
