@@ -1,0 +1,5 @@
+com\weatherapp\services\WeatherService.class
+com\weatherapp\controller\BaseController.class
+com\weatherapp\pojo\Location.class
+com\weatherapp\config\WeatherConfig.class
+com\weatherapp\validator\LocationValidator.class

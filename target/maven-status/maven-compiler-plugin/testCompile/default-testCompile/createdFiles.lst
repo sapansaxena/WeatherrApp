@@ -1,0 +1,3 @@
+com\weatherapp\services\TestWeatherService.class
+com\weatherapp\controller\TestBaseController.class
+com\weatherapp\validator\TestLocationValidator.class
