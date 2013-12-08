@@ -25,7 +25,7 @@
         <td>${location.state}</td>
     </tr>
     <tr>
-        <td>zipcode</td>
+        <td>Temperature</td>
         <td>${location.temperature}</td>
     </tr>
 
